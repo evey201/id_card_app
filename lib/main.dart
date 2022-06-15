@@ -8,8 +8,15 @@ void main() {
   ));
 }
 
-class PlaygroundCard extends StatelessWidget {
+class PlaygroundCard extends StatefulWidget {
   const PlaygroundCard({Key? key}) : super(key: key);
+
+  @override
+  State<PlaygroundCard> createState() => _PlaygroundCardState();
+}
+
+class _PlaygroundCardState extends State<PlaygroundCard> {
+  int gameLevel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +26,15 @@ class PlaygroundCard extends StatelessWidget {
         title: Text('Playground ID Card'),
         backgroundColor: Colors.blueGrey[800],
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => {
+          setState(() => {
+            gameLevel += 1
+          })
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.blueGrey[400],
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
@@ -69,7 +85,7 @@ class PlaygroundCard extends StatelessWidget {
               height: 10.0,
             ),
             Text(
-              '10',
+              '$gameLevel',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 letterSpacing: 2.0,
